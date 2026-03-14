@@ -19,7 +19,7 @@ public class Pop3Server {
     }
 
 
-    public void start(int port) throws IOException {
+    public void start() throws IOException {
 
         ServerSocket serverSocket = new ServerSocket(port);
 
