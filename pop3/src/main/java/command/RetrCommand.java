@@ -1,4 +1,8 @@
 package command;
 
-public class RetrCommand {
+public class RetrCommand implements Pop3Command{
+    @Override
+    public void execute() {
+
+    }
 }

@@ -1,4 +1,8 @@
 package command;
 
-public class PassCommand {
+public class PassCommand implements Pop3Command{
+    @Override
+    public void execute() {
+
+    }
 }
