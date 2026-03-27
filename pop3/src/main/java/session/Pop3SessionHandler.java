@@ -14,6 +14,7 @@ public class Pop3SessionHandler implements Runnable{
 
     Socket socket;
     Pop3CommandRegister pop3CommandRegister;
+    SessionContext context;
 
     public Pop3SessionHandler(Socket s){
         this.socket=s;
@@ -38,12 +39,14 @@ public class Pop3SessionHandler implements Runnable{
             Pop3Request request;
             while(true){
                     line = reader.readLine();
-
                 if (line == null || line.isBlank()) {
-                    //return error
+                    writer.write(Pop3Response.err("unknown command!").toString());
+                    writer.flush();;
+                    continue;
                 }
-                    request= CommandParser.parseCommand(line);
-                    
+                 request= CommandParser.parseCommand(line);
+                 pop3CommandRegister.getCommand(request.getCommand()).execute(request,context);
+
             }
 
         } catch (IOException e) {

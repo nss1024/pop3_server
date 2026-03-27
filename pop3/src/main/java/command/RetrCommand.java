@@ -1,8 +1,13 @@
 package command;
 
-public class RetrCommand implements Pop3Command{
-    @Override
-    public void execute() {
+import parser.Pop3Request;
+import response.Pop3Response;
+import session.SessionContext;
 
+public class RetrCommand implements Pop3Command{
+
+    @Override
+    public Pop3Response execute(Pop3Request request, SessionContext context) {
+        return null;
     }
 }

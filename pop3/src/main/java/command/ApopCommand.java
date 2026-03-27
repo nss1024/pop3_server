@@ -1,8 +1,12 @@
 package command;
 
+import parser.Pop3Request;
+import response.Pop3Response;
+import session.SessionContext;
+
 public class ApopCommand implements Pop3Command{
     @Override
-    public void execute() {
-
+    public Pop3Response execute(Pop3Request request, SessionContext context) {
+        return null;
     }
 }

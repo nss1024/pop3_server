@@ -3,7 +3,7 @@ package command;
 import java.util.HashMap;
 
 public class Pop3CommandRegister {
-    private static HashMap<String, Pop3Command> pop3CommandHashMap = new HashMap<>();
+    private static final HashMap<String, Pop3Command> pop3CommandHashMap = new HashMap<>();
 
     Pop3CommandRegister(){
         loadMap();

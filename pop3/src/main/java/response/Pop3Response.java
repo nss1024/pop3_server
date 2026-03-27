@@ -2,12 +2,25 @@ package response;
 
 public class Pop3Response {
 
-    public static String ok(String message) {
-        return "+OK " + message + "\r\n";
+    private final String message;
+    private final boolean ok;
+
+    public Pop3Response(boolean b, String message) {
+        this.message=message;
+        this.ok=b;
     }
 
-    public static String err(String message) {
-        return "-ERR " + message + "\r\n";
+    public static Pop3Response ok(String message) {
+        return new Pop3Response(true, message);
+    }
+
+    public static Pop3Response err(String message) {
+        return new Pop3Response(false, message);
+    }
+
+    @Override
+    public String toString() {
+        return (ok ? "+OK " : "-ERR ") + message + "\r\n";
     }
 
 }

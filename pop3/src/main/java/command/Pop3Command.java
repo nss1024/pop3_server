@@ -1,7 +1,11 @@
 package command;
 
+import parser.Pop3Request;
+import response.Pop3Response;
+import session.SessionContext;
+
 public interface Pop3Command {
 
-    void execute();
+    Pop3Response execute(Pop3Request request, SessionContext context);
 
 }
