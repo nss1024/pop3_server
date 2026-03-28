@@ -1,9 +1,11 @@
 package session;
 
 import authenticate.AuthService;
+import mailbox.Mailbox;
 import mailbox.MailboxManager;
 
 import java.net.Socket;
+import java.util.UUID;
 
 public class SessionContext {
 
@@ -13,6 +15,9 @@ public class SessionContext {
     private AuthService authService;
     private MailboxManager mailboxManager;
     private Socket socket;
+    String sessionId = UUID.randomUUID().toString();
+    Mailbox mailbox;
+    SessionState sessionState;
 
 
     public SessionContext(AuthService authService, MailboxManager mailboxManager, Socket socket) {
@@ -31,10 +36,43 @@ public class SessionContext {
         this.pass = pass;
     }
 
+    public Mailbox getMailbox() {
+        return mailbox;
+    }
+
+    public void setMailbox(Mailbox mailbox) {
+        this.mailbox = mailbox;
+    }
+
+    public SessionState getSessionState() {
+        return sessionState;
+    }
+
+    public void setSessionState(SessionState sessionState) {
+        this.sessionState = sessionState;
+    }
+
     public Socket getSocket() {
         return socket;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public String getPass() {
+        return pass;
+    }
 
+    public AuthService getAuthService() {
+        return authService;
+    }
+
+    public MailboxManager getMailboxManager() {
+        return mailboxManager;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
 }

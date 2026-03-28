@@ -1,4 +1,5 @@
 package session;
 
-public class SessionState {
+public enum SessionState {
+    TRANSACTION
 }

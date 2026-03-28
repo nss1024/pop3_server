@@ -1,5 +1,8 @@
 package server;
 
+import authenticate.AuthService;
+import command.Pop3CommandRegister;
+import mailbox.MailboxManager;
 import session.Pop3SessionHandler;
 
 import java.io.IOException;
@@ -12,6 +15,9 @@ public class Pop3Server {
 
     private final int port;
     private final ExecutorService connectionPool;
+    Pop3CommandRegister pop3CommandRegister = new Pop3CommandRegister();
+    MailboxManager mailboxManager = new MailboxManager();
+    AuthService authService = new AuthService();
 
     public Pop3Server(int port) {
         this.port = port;
@@ -29,7 +35,7 @@ public class Pop3Server {
 
             Socket socket = serverSocket.accept();
 
-            connectionPool.submit(new Pop3SessionHandler(socket));
+            connectionPool.submit(new Pop3SessionHandler(socket, pop3CommandRegister, authService,mailboxManager));
         }
     }
 }

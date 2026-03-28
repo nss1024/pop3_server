@@ -3,6 +3,7 @@ package mailbox;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,10 @@ import java.util.stream.Stream;
 
 public class MailboxService {
 
-public static List<MailMessage> getMessages(Path userFolder) throws IOException {
+public static List<MailMessage> getMessages(String userName) throws IOException {
+    Path baseDir = Paths.get("C:\\dev\\FileStore\\Mailboxes");
+    Path userFolder = baseDir.resolve(userName);
+
     List<MailMessage> messages = new ArrayList<>();
 
     try (Stream<Path> paths = Files.list(userFolder)) {

@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Pop3CommandRegister {
     private static final HashMap<String, Pop3Command> pop3CommandHashMap = new HashMap<>();
 
-    Pop3CommandRegister(){
+   public Pop3CommandRegister(){
         loadMap();
     }
 
