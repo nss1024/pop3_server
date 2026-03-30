@@ -1,11 +1,15 @@
 package response;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Pop3Response {
 
     private final String message;
-    private final boolean ok;
+    private final Boolean ok;
 
-    public Pop3Response(boolean b, String message) {
+
+    public Pop3Response(Boolean b, String message) {
         this.message=message;
         this.ok=b;
     }
@@ -18,9 +22,24 @@ public class Pop3Response {
         return new Pop3Response(false, message);
     }
 
+    public static Pop3Response multiLine(List<String> lines) {
+        return new Pop3Response(null,Pop3Response.linesToString(lines));
+    }
+
     @Override
     public String toString() {
-        return (ok ? "+OK " : "-ERR ") + message + "\r\n";
+        if(ok!=null){
+            return (ok ? "+OK " : "-ERR ") + message + "\r\n";
+        }else {
+            return message;
+        }
+
+    }
+
+    private static String linesToString(List<String> lines){
+        return lines.stream()
+                .map(line -> line + "\r\n")
+                .collect(Collectors.joining());
     }
 
 }
