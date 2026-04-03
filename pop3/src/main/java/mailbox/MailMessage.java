@@ -41,6 +41,10 @@ public class MailMessage {
         return deleted;
     }
 
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public String toString() {
         return "MailMessage{" +

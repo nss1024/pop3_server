@@ -1,5 +1,6 @@
 package command;
 
+import authenticate.AuthState;
 import mailbox.Mailbox;
 import mailbox.MailboxService;
 import parser.Pop3Request;
@@ -23,6 +24,8 @@ public class PassCommand implements Pop3Command{
 
         if (!context.getAuthService().authenticate(username, password)) {
             return Pop3Response.err("invalid credentials");
+        }else{
+            context.setAuthState(AuthState.LOGGED_IN);
         }
 
         if (!context.getMailboxManager().lock(username, context.getSessionId())) {

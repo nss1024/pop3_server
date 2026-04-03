@@ -66,6 +66,10 @@ public class Pop3SessionHandler implements Runnable{
                writer.write(response.toString());
                writer.flush();
 
+                if ("QUIT".equalsIgnoreCase(request.getCommand())) {
+                    break;
+                }
+
             }
 
         } catch (IOException e) {

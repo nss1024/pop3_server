@@ -1,6 +1,7 @@
 package session;
 
 import authenticate.AuthService;
+import authenticate.AuthState;
 import mailbox.Mailbox;
 import mailbox.MailboxManager;
 
@@ -18,12 +19,14 @@ public class SessionContext {
     String sessionId = UUID.randomUUID().toString();
     Mailbox mailbox;
     SessionState sessionState;
+    AuthState authState;
 
 
     public SessionContext(AuthService authService, MailboxManager mailboxManager, Socket socket) {
         this.authService = authService;
         this.mailboxManager = mailboxManager;
         this.socket=socket;
+        this.authState=AuthState.LOGGED_OUT;
     }
 
 
@@ -74,5 +77,13 @@ public class SessionContext {
 
     public String getSessionId() {
         return sessionId;
+    }
+
+    public void setAuthState(AuthState authState) {
+        this.authState = authState;
+    }
+
+    public AuthState getAuthState() {
+        return authState;
     }
 }
