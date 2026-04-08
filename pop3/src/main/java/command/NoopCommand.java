@@ -8,6 +8,6 @@ public class NoopCommand implements Pop3Command{
 
     @Override
     public Pop3Response execute(Pop3Request request, SessionContext context) {
-        return null;
+        return Pop3Response.ok("noop");
     }
 }
