@@ -23,6 +23,7 @@ public class QuitCommand implements Pop3Command{
         }
 
         if (context.getSessionState() == SessionState.TRANSACTION) {
+            context.setSessionState(SessionState.UPDATE);
             handleTransactionQuit(context);
             mailboxManager.unlock(context.getUserName(), context.getSessionId());
         }
