@@ -61,11 +61,16 @@ public class Pop3SessionHandler implements Runnable{
 
                 request= CommandParser.parseCommand(line);
 
-               Pop3Response response =  pop3CommandRegister.getCommand(request.getCommand()).execute(request,context);
+               //Pop3Response response =  pop3CommandRegister.getCommand(request.getCommand()).execute(request,context);
 
-               writer.write(response.toString());
-               writer.flush();
-
+               Pop3Command command = pop3CommandRegister.getCommand(request.getCommand());
+               if(command.handlesOwnResponse()){
+                   command.writeDirect(socket.getOutputStream(),request,context);
+               }else {
+                   Pop3Response response = command.execute(request, context);
+                   writer.write(response.toString());
+                   writer.flush();
+               }
                 if ("QUIT".equalsIgnoreCase(request.getCommand())) {
                     break;
                 }

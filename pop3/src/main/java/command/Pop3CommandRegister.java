@@ -14,7 +14,7 @@ public class Pop3CommandRegister {
     }
 
     private void loadMap(){
-        pop3CommandHashMap.put("APOP",new ApopCommand());
+
         pop3CommandHashMap.put("DELE",new DeleCommand());
         pop3CommandHashMap.put("LIST",new ListCommand());
         pop3CommandHashMap.put("NOOP",new NoopCommand());
